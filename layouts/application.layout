@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />	
+	<title>{{meta_title}}</title>
+	<meta name="description" content="{{meta_description}}" />
+    <meta name="keywords" content="{{meta_keywords}}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" href="http://assets.kodekloud.io/sites/55a423256e6f644941000000/f43f7ec82793a61cdf90f51638ae8d1d/codecloud_fav.png">
+
+	<!-- stylesheets -->
+	<link href="http://assets.kodekloud.io/sites/55a423256e6f644941000000/d4af3f5629116142275a0d1d68f2859e/bootstrap.min.css" rel="stylesheet">
+	<link href="http://assets.kodekloud.io/sites/55a423256e6f644941000000/d4af3f5629116142275a0d1d68f2859e/theme.css" rel="stylesheet">
+	<link href="http://assets.kodekloud.io/sites/55a423256e6f644941000000/d4af3f5629116142275a0d1d68f2859e/animate.css" rel="stylesheet">
+	<link href="http://assets.kodekloud.io/sites/55a423256e6f644941000000/7e0467c586b6dfae99a1d3ac47236e35/flipclock.css" rel="stylesheet">
+	
+	<link href="/application.css" rel="stylesheet">
+
+	<!-- javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://assets.kodekloud.io/sites/55a423256e6f644941000000/d4af3f5629116142275a0d1d68f2859e/bootstrap.min.js"></script>
+	<script src="http://assets.kodekloud.io/sites/55a423256e6f644941000000/d4af3f5629116142275a0d1d68f2859e/theme.js"></script>
+	<script src="http://assets.kodekloud.io/sites/55a423256e6f644941000000/7e0467c586b6dfae99a1d3ac47236e35/flipclock.min.js"></script>
+
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    
+    
+    <script>
+        
+        
+        
+    </script>
+</head>
+<body id="home2">
+<div class="container" style="">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                <a href="/" class=""><img src="http://assets.kodekloud.io/sites/55a423256e6f644941000000/f43f7ec82793a61cdf90f51638ae8d1d/codecloud_logo.png" class="" alt="" style="max-width:200px;height:auto;padding-top:60px;padding-bottom:20px;"></a>
+            </div>
+            <div id="clock" class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+              <div class="your-clock hidden-xs hidden-sm" style="padding-top:20px;float:right"></div>
+              <div class="your-clock2 hidden-xs hidden-lg hidden-md" style="padding-top:20px;float:right"></div>
+              
+              <div class="hidden-lg hidden-md hidden-sm" style="padding-top:20px;float:right">
+                  <span class="flip-clock-label" style="padding-left:33px">Days to launch</span>
+              <div class="your-clock-mobile hidden-lg hidden-md"></div>
+              </div>
+              
+            
+            </div>
+            
+        </div>
+    </div>
+{{yield}}
+</body>
+
+<footer>
+<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 copyright">
+					<a href="/" class=""><img src="http://assets.kodekloud.io/sites/55a423256e6f644941000000/f43f7ec82793a61cdf90f51638ae8d1d/codecloud_grey2.png" class="" alt="" style="max-width:200px;height:auto;"></a><br>
+					Copyright 2015
+				</div>
+				<div class="col-sm-6 menu">
+				
+				</div>
+				<div class="col-sm-3 social">
+				<!--
+					<a href="http://www.twitter.com" target="_blank" >
+						<img style="padding-top:10px; width:40px;" src="http://assets.kodekloud.io/sites/55a423256e6f644941000000/d4b9853de5303a7ba84d55ee9d8b14a0/twitter.png" alt="twitter" />
+					</a>
+-->
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+	<script type="text/javascript">
+	
+	    function days_between(date1, date2) {
+
+    // The number of milliseconds in one day
+    var ONE_DAY = 1000 * 60 * 60 * 24
+
+    // Convert both dates to milliseconds
+    var date1_ms = date1.getTime()
+    var date2_ms = date2.getTime()
+
+    // Calculate the difference in milliseconds
+    var difference_ms = Math.abs(date1_ms - date2_ms)
+
+    // Convert back to days and return
+    return Math.round(difference_ms/ONE_DAY)
+
+}
+
+
+		$(function () {
+			var $navDots = $("#hero nav a")
+			var $next = $(".slide-nav.next");
+			var $prev = $(".slide-nav.prev");
+			var $slides = $("#hero .slides .slide");
+			var actualIndex = 0;
+			var swiping = false;
+			var interval;
+			
+			
+			var launch_day = new Date(2015,8,02,11,33,30,0);
+			var days_left = days_between(new Date(),launch_day);
+			
+			var clock = $('.your-clock').FlipClock(3600 * 24 * days_left, {
+		        clockFace: 'DailyCounter',
+		        countdown: true
+	        });
+	        
+	        var clock = $('.your-clock2').FlipClock(3600 * 24 * days_left, {
+		        clockFace: 'DailyCounter',
+		        countdown: true,
+		        showSeconds:false
+	        });
+	        
+	        var clock = $('.your-clock-mobile').FlipClock(days_left, {
+		        clockFace: 'Counter'
+        	});
+	
+	
+
+
+			$navDots.click(function (e) {
+				e.preventDefault();
+				if (swiping) { return; }
+				swiping = true;
+
+				actualIndex = $navDots.index(this);
+				updateSlides(actualIndex);
+			});
+
+			$next.click(function (e) {
+				e.preventDefault();
+				if (swiping) { return; }
+				swiping = true;
+
+				clearInterval(interval);
+				interval = null;
+
+				actualIndex++;
+				if (actualIndex >= $slides.length) {
+					actualIndex = 0;
+				}
+
+				updateSlides(actualIndex);
+			});
+
+			$prev.click(function (e) {
+				e.preventDefault();
+				if (swiping) { return; }
+				swiping = true;
+
+				clearInterval(interval);
+				interval = null;
+
+				actualIndex--;
+				if (actualIndex < 0) {
+					actualIndex = $slides.length - 1;
+				}
+
+				updateSlides(actualIndex);
+			});
+
+			function updateSlides(index) {
+				// update nav dots
+				$navDots.removeClass("active");
+				$navDots.eq(index).addClass("active");
+
+				// update slides
+				var $activeSlide = $("#hero .slide.active");
+				var $nextSlide = $slides.eq(index);
+
+				$activeSlide.fadeOut();
+				$nextSlide.addClass("next").fadeIn();
+				
+				setTimeout(function () {
+					$slides.removeClass("next").removeClass("active");
+					$nextSlide.addClass("active");
+					$activeSlide.removeAttr('style');
+					swiping = false;
+				}, 1000);
+			}
+
+
+			interval = setInterval(function () {
+				if (swiping) { return; }
+				swiping = true;
+
+				actualIndex++;
+				if (actualIndex >= $slides.length) {
+					actualIndex = 0;
+				}
+
+				updateSlides(actualIndex);
+			}, 5000);
+
+			// demo player
+			var $videoModal = $(".video-modal");
+			$("#demo-player").click(function () {
+				$videoModal.toggleClass("active");
+				clearInterval(interval);
+				interval = null;
+			});
+			$videoModal.click(function () {
+				$videoModal.removeClass("active");
+				setTimeout(function () {
+					$videoModal.find(".wrap").html('<iframe src="http://player.vimeo.com/video/22439234" width="620" height="350" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+				}, 1000);
+			})
+			$videoModal.find(".wrap").click(function (e) {
+				e.stopPropagation();
+			});
+		});
+	</script>
+
+</html>
